@@ -4,6 +4,10 @@ import _ from 'lodash';
 import Layout from '../components/layout';
 
 import nirlomImage from '../static/images/nirlom.png';
+import forward from '../static/images/forward.svg';
+import backward from '../static/images/back.svg';
+import bulbDark from '../static/images/bulb-dark.svg';
+import bulbLight from '../static/images/bulb-light.svg';
 
 const NewsCards = ({
   data: {
@@ -14,8 +18,11 @@ const NewsCards = ({
   const [pullDeltaX, setPullDeltaX] = useState(0);
   const [isDarkModeEnabled, setIsDarkModeEnabled] = useState(() => {
     if (typeof window !== 'undefined' && window) {
-      return window.localStorage.getItem('isDarkModeEnabled');
+      return JSON.parse(
+        window.localStorage.getItem('isDarkModeEnabled').toLowerCase()
+      );
     }
+    return false;
   });
   const [readCounter, setReadCounter] = useState(() => {
     if (typeof window !== 'undefined' && window) {
@@ -113,6 +120,7 @@ const NewsCards = ({
       return !prevIsDarkModeEnabled;
     });
   };
+  console.log('isDarkModeEnabled', isDarkModeEnabled);
 
   return (
     <Layout>
@@ -120,19 +128,34 @@ const NewsCards = ({
         <div className="row">
           <div className="icon">
             {/* <div className="share" onClick={handleOnCardNextClick} /> */}
-            <div className="backward" onClick={handleOnCardPrevClick} />
+            <img
+              src={backward}
+              onClick={handleOnCardPrevClick}
+              alt="backward news article"
+            />
           </div>
-          <div
-            className={`icon bulb-light ${
-              isDarkModeEnabled ? 'bulb-dark' : ''
-            }`}
-            onClick={handleEnableDarkMode}
-          >
-            <div className="bulb" />
+          <div className="icon bulb-light">
+            {isDarkModeEnabled ? (
+              <img
+                src={bulbDark}
+                onClick={handleEnableDarkMode}
+                alt="bulb dark news article"
+              />
+            ) : (
+              <img
+                src={bulbLight}
+                onClick={handleEnableDarkMode}
+                alt="bulb light news article"
+              />
+            )}
           </div>
           <div className="icon">
             {/* <div className="share" onClick={handleOnCardNextClick} /> */}
-            <div className="forward" onClick={handleOnCardNextClick} />
+            <img
+              src={forward}
+              onClick={handleOnCardNextClick}
+              alt="next news article"
+            />
           </div>
         </div>
       </header>
@@ -181,7 +204,7 @@ const NewsCards = ({
                         article.node.publishedAt
                       }`}</span> */}
                       <p className="demo__card__we">
-                        {article.node.description.substring(0, 250)}...
+                        {article.node.description.substring(0, 200)}...
                       </p>
                       {article.node.url && (
                         <div className="readmore">

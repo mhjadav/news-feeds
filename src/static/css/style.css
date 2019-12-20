@@ -20,7 +20,7 @@ header {
 	background: #fff;
 }
 
-.bulb,
+/* .bulb,
 .backward,
 .forward {
 	height: 25px;
@@ -30,7 +30,7 @@ header {
 	background-image: url("../images/back.svg");	
 }
 .forward{
-	background-image: url("../images/forward.svg");	
+	color: red;
 }
 .bulb-light .bulb{
 	background-image: url("../images/bulb-light.svg");
@@ -40,14 +40,16 @@ header {
 	background-size: 25px 25px;
 }
 .bulb-dark{
-	/* background-color: #fff !important; */
-}
+	 background-color: #fff !important;
+}*/
 
 .icon {
 	/* background: #d3d3d3bd; */
 	border-radius: 50%;
 	padding: 5px;
 	cursor: pointer;
+	height: 32px;
+	width: 32px;
 }
 
 .demo {

@@ -18,9 +18,9 @@ const NewsCards = ({
   const [pullDeltaX, setPullDeltaX] = useState(0);
   const [isDarkModeEnabled, setIsDarkModeEnabled] = useState(() => {
     if (typeof window !== 'undefined' && window) {
-      return JSON.parse(
-        window.localStorage.getItem('isDarkModeEnabled').toLowerCase()
-      );
+      const localIsDarkModeEnabled =
+        window.localStorage.getItem('isDarkModeEnabled') || 'false';
+      return JSON.parse(localIsDarkModeEnabled.toLowerCase());
     }
     return false;
   });

@@ -120,7 +120,6 @@ const NewsCards = ({
       return !prevIsDarkModeEnabled;
     });
   };
-  console.log('isDarkModeEnabled', isDarkModeEnabled);
 
   return (
     <Layout>
